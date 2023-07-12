@@ -1,0 +1,1141 @@
+{
+	"info": {
+		"_postman_id": "cc3f75a4-f8ab-46e1-95d3-215fcfe50253",
+		"name": "EMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28213397"
+	},
+	"item": [
+		{
+			"name": "/v1/user/jwt/customlogin",
+			"item": [
+				{
+					"name": "positive test",
+					"item": [
+						{
+							"name": "Authentication Happy Path",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"token\", jsonData.data.token); \r",
+											"\r",
+											"\r",
+											"//Start Test Cases Here\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Token has value\", () => {\r",
+											"    pm.expect(jsonData.token).to.not.be.null;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Required columns has value\", () => {\r",
+											"    pm.expect(jsonData.role).to.not.be.null;\r",
+											"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+											"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+											"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+											"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+											"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+											"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+											"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+											"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+											"    pm.expect(jsonData.token).to.not.be.null;\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Group ID has value\", () => {\r",
+											"    pm.expect(jsonData.groupId).to.not.be.null;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Image can be null and has value but not 0\", () => {\r",
+											"    pm.expect(jsonData.groupId).to.not.eql(0);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userName\": \"leohmarr.abatay@emerson.com\",\r\n  \"password\": \"{{password}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authUrl}}",
+									"host": [
+										"{{authUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authentication Uppercase",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"token\", jsonData.data.token); \r",
+											"\r",
+											"\r",
+											"//Start Test Cases Here\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Token has value\", () => {\r",
+											"    pm.expect(jsonData.token).to.not.be.null;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Required columns has value\", () => {\r",
+											"    pm.expect(jsonData.role).to.not.be.null;\r",
+											"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+											"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+											"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+											"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+											"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+											"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+											"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+											"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+											"    pm.expect(jsonData.token).to.not.be.null;\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Group ID has value\", () => {\r",
+											"    pm.expect(jsonData.groupId).to.not.be.null;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Image can be null and has value but not 0\", () => {\r",
+											"    pm.expect(jsonData.groupId).to.not.eql(0);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userName\": \"LEOHMARR.ABATAY@EMERSON.COM\",\r\n  \"password\": \"{{password}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authUrl}}",
+									"host": [
+										"{{authUrl}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "negative test",
+					"item": [
+						{
+							"name": "Authentication External",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"if (jsonData) {\r",
+											"    pm.collectionVariables.set(\"token\", jsonData.token);  \r",
+											"}\r",
+											"//Start Test Cases Here\r",
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userName\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{password}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authUrl}}",
+									"host": [
+										"{{authUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authentication Wrong Email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"if (jsonData) {\r",
+											"    pm.collectionVariables.set(\"token\", jsonData.token);  \r",
+											"}\r",
+											"//Start Test Cases Here\r",
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userName\": \"LeohMarr.Abatay@Emerson.co\",\r\n  \"password\": \"{{password}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authUrl}}",
+									"host": [
+										"{{authUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authentication Wrong Pass",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"if (jsonData) {\r",
+											"    pm.collectionVariables.set(\"token\", jsonData.token);  \r",
+											"}\r",
+											"//Start Test Cases Here\r",
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userName\": \"LeohMarr.Abatay@Emerson.com\",\r\n  \"password\": \"{{$randomPassword}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authUrl}}",
+									"host": [
+										"{{authUrl}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "/v1/user",
+			"item": [
+				{
+					"name": "Authentication Happy Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"token\", jsonData.data.token); \r",
+									"\r",
+									"\r",
+									"//Start Test Cases Here\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Token has value\", () => {\r",
+									"    pm.expect(jsonData.token).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Required columns has value\", () => {\r",
+									"    pm.expect(jsonData.role).to.not.be.null;\r",
+									"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+									"    pm.expect(jsonData.token).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Group ID has value\", () => {\r",
+									"    pm.expect(jsonData.groupId).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Image can be null and has value but not 0\", () => {\r",
+									"    pm.expect(jsonData.groupId).to.not.eql(0);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"leohmarr.abatay@emerson.com\",\r\n  \"password\": \"{{password}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authUrl}}",
+							"host": [
+								"{{authUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/api/v1/user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"//Start Test Cases Here\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Required columns has value\", () => {\r",
+									"    pm.expect(jsonData.role).to.not.be.null;\r",
+									"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"GroupId should not have 0 value\", function () {\r",
+									"    pm.expect(jsonData.regionName).to.not.be.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"AdEmail should be used once\", () => {\r",
+									"    // Parse the JSON response\r",
+									"    const jsonData = pm.response.json();\r",
+									"    const data = jsonData.data;\r",
+									"\r",
+									"    // Create an object to store the count of each unique adEmail value\r",
+									"    const emailCounts = {};\r",
+									"\r",
+									"    // Loop through each object in the \"data\" array\r",
+									"    for (let i = 0; i < data.length; i++) {\r",
+									"        // Get the value of the \"adEmail\" property for the current object\r",
+									"        const email = data[i].adEmail;\r",
+									"\r",
+									"        // Increment the count of the current email value in the emailCounts object\r",
+									"        if (email in emailCounts) {\r",
+									"            emailCounts[email]++;\r",
+									"        } else {\r",
+									"            emailCounts[email] = 1;\r",
+									"        }\r",
+									"    }\r",
+									"\r",
+									"    // Loop through each unique email value in the emailCounts object\r",
+									"    for (const email in emailCounts) {\r",
+									"        // Check that the count of the current email value is equal to 1\r",
+									"        pm.expect(emailCounts[email]).to.equal(1, `Email ${email} appears ${emailCounts[email]} times in data`);\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"// pm.test(\"GroupId does not have null value\", () => {\r",
+									"//     // Parse the JSON response\r",
+									"//     const jsonData = pm.response.json();\r",
+									"\r",
+									"//     // Get the array of objects from the \"data\" property\r",
+									"//     const data = jsonData.data;\r",
+									"\r",
+									"//     // Loop through each object in the \"data\" array\r",
+									"//     for (let i = 0; i < data.length; i++) {\r",
+									"//         // Check if the \"groupId\" value is null\r",
+									"//         if (data[i].groupId === null) {\r",
+									"//             // If it is null, fail the test and log an error message\r",
+									"//             pm.expect.fail(`Null groupId value found in object ${i + 1}`);\r",
+									"//         }\r",
+									"//     }\r",
+									"// });\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/api/v1/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/api/api/v1/user/custom{email}",
+			"item": [
+				{
+					"name": "Authentication Happy Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"token\", jsonData.data.token); \r",
+									"\r",
+									"\r",
+									"//Start Test Cases Here\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Token has value\", () => {\r",
+									"    pm.expect(jsonData.token).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Required columns has value\", () => {\r",
+									"    pm.expect(jsonData.role).to.not.be.null;\r",
+									"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+									"    pm.expect(jsonData.token).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Group ID has value\", () => {\r",
+									"    pm.expect(jsonData.groupId).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Image can be null and has value but not 0\", () => {\r",
+									"    pm.expect(jsonData.groupId).to.not.eql(0);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"leohmarr.abatay@emerson.com\",\r\n  \"password\": \"{{password}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authUrl}}",
+							"host": [
+								"{{authUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/api/v1/user/custom/:email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"//Start Test Cases Here\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Required columns has value\", () => {\r",
+									"    pm.expect(jsonData.role).to.not.be.null;\r",
+									"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"GroupId should not have 0 value\", function () {\r",
+									"    pm.expect(jsonData.regionName).to.not.be.eql(0);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/api/v1/user/custom/:email",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"api",
+								"v1",
+								"user",
+								"custom",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "JoeMarie.Escuadra@Emerson.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/api/api/v1/user/{role}",
+			"item": [
+				{
+					"name": "Authentication Happy Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"token\", jsonData.data.token); \r",
+									"\r",
+									"\r",
+									"//Start Test Cases Here\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Token has value\", () => {\r",
+									"    pm.expect(jsonData.token).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Required columns has value\", () => {\r",
+									"    pm.expect(jsonData.role).to.not.be.null;\r",
+									"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+									"    pm.expect(jsonData.token).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Group ID has value\", () => {\r",
+									"    pm.expect(jsonData.groupId).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Image can be null and has value but not 0\", () => {\r",
+									"    pm.expect(jsonData.groupId).to.not.eql(0);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"leohmarr.abatay@emerson.com\",\r\n  \"password\": \"{{password}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authUrl}}",
+							"host": [
+								"{{authUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Full_Control_Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"//Start Test Cases Here\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Required columns has value\", () => {\r",
+									"    pm.expect(jsonData.role).to.not.be.null;\r",
+									"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"GroupId should not have 0 value\", function () {\r",
+									"    pm.expect(jsonData.regionName).to.not.be.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate that all roles are Full_Control_Admin\", () => {\r",
+									"    // Parse the JSON response\r",
+									"    const jsonData = pm.response.json();\r",
+									"    const data = jsonData.data;\r",
+									"\r",
+									"    for (let i = 0; i < data.length; i++) {\r",
+									"        // Check if the \"role\" value is not equal to \"Full_Control_Admin\"\r",
+									"        if (data[i].role !== \"Full_Control_Admin\") {\r",
+									"            // If it is not equal, fail the test and log an error message\r",
+									"            pm.expect.fail(`Role is not Full_Control_Admin for object ${i + 1}`);\r",
+									"        }\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/api/v1/user/:role",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								":role"
+							],
+							"variable": [
+								{
+									"key": "role",
+									"value": "Full_Control_Admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resource_Center_Site_Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"//Start Test Cases Here\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Required columns has value\", () => {\r",
+									"    pm.expect(jsonData.role).to.not.be.null;\r",
+									"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"GroupId should not have a 0 value\", function () {\r",
+									"    pm.expect(jsonData.regionName).to.not.be.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate that all roles are Resource_Center_Site_Admin\", () => {\r",
+									"    // Parse the JSON response\r",
+									"    const jsonData = pm.response.json();\r",
+									"    const data = jsonData.data;\r",
+									"\r",
+									"    for (let i = 0; i < data.length; i++) {\r",
+									"        // Check if the \"role\" value is not equal to \"Full_Control_Admin\"\r",
+									"        if (data[i].role !== \"Resource_Center_Site_Admin\") {\r",
+									"            // If it is not equal, fail the test and log an error message\r",
+									"            pm.expect.fail(`Role is not Resource_Center_Site_Admin for object ${i + 1}`);\r",
+									"        }\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/api/v1/user/:role",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								":role"
+							],
+							"variable": [
+								{
+									"key": "role",
+									"value": "Resource_Center_Site_Admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Multi_Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Required columns has value\", () => {\r",
+									"    pm.expect(jsonData.role).to.not.be.null;\r",
+									"    pm.expect(jsonData.adFirstName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adLastName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adServerName).to.not.be.null;\r",
+									"    pm.expect(jsonData.adEmail).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationId).to.not.be.null;\r",
+									"    pm.expect(jsonData.locationName).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionId).to.not.be.null;\r",
+									"    pm.expect(jsonData.regionName).to.not.be.null;\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"GroupId should not have a 0 value\", () => {\r",
+									"    const data = jsonData.data;\r",
+									"     for (let i = 0; i < data.length; i++) {\r",
+									"        if (!data[i].groupId == 0) {\r",
+									"            pm.expect.fail(`groupId must not contain 0 value ${i + 1}`);\r",
+									"        }\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if locationId has 2 value\", () => {\r",
+									"    const data = jsonData.data;\r",
+									"    for (let i = 0; i < data.length; i++) {\r",
+									"        // Check if the \"locationId\" value contains the letter \"a\"\r",
+									"        if (!data[i].locationId.includes(\",\")) {\r",
+									"            // If it does not contain the letter \"a\", fail the test and log an error message\r",
+									"            pm.expect.fail(`locationId does not contain 2 values ${i + 1}`);\r",
+									"        }\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if locationName has 2 value\", () => {\r",
+									"    const data = jsonData.data;  \r",
+									"    for (let i = 0; i < data.length; i++) {\r",
+									"        if (!data[i].locationName.includes(\",\")) {\r",
+									"            pm.expect.fail(`locationName does not contain 2 values ${i + 1}`);\r",
+									"        }\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// pm.test(\"Validate if locationName has 2 value\", () => {\r",
+									"//         const dataArray = jsonData.data;\r",
+									"//         pm.expect(dataArray).to.be.an(\"array\");\r",
+									"//         const findData = dataArray.find(m => m.role === \"Multi_Admin\")\r",
+									"//         pm.expect(findData.locationName).includes(\"Manila\")\r",
+									"\r",
+									"// });\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/api/v1/user/:role",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								":role"
+							],
+							"variable": [
+								{
+									"key": "role",
+									"value": "Multi_Admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "password",
+			"value": "password",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"disabled": true
+		}
+	]
+}
